@@ -37,19 +37,19 @@ data-engineering/
 ```
 ## 🔄 Pipeline Workflow
 
-### 1️⃣ Extract
+### 1. Extract
 * Fetch stock data (via CSV or API)
 * Add metadata:
    * `symbol` (stock ticker)
    * `extracted_at` (timestamp of extraction)
 
-### 2️⃣ Transform
+### 2. Transform
 * Parse dates and handle timezones
 * Convert columns to appropriate types (`float`, `int`, `datetime`)
 * Normalize column names
 * Handle invalid or missing values
 
-### 3️⃣ Load
+### 3. Load
 * Insert data into PostgreSQL
 * Maintain idempotence to avoid duplicates
 * Ensure safe reloads in case the pipeline is rerun
@@ -80,7 +80,7 @@ This ensures data integrity and allows for safe reruns of the pipeline without w
 - Python 3.x installed
 - Required Python packages (see Installation section)
 
-### 1️⃣ Start PostgreSQL using Docker Compose
+### 1. Start PostgreSQL using Docker Compose
 
 ```bash
 docker-compose up -d
@@ -88,7 +88,7 @@ docker-compose up -d
 
 This will start the PostgreSQL container in the background.
 
-### 2️⃣ Create the database table (first time only)
+### 2. Create the database table (first time only)
 
 ```bash
 python src/create_table.py
@@ -96,7 +96,7 @@ python src/create_table.py
 
 This script creates the necessary table structure with the appropriate constraints and indexes.
 
-### 3️⃣ Run the ETL pipeline
+### 3. Run the ETL pipeline
 
 ```bash
 python src/main.py
