@@ -1,6 +1,6 @@
-# 📊 Stock ETL Pipeline (Data Engineering Project)
+# Stock ETL Pipeline (Data Engineering Project)
 
-## 🎯 Objectif du projet
+## Objectif du projet
 Ce projet illustre la mise en place d’un **pipeline ETL (Extract, Transform, Load)** permettant de :
 - collecter des données financières (actions boursières),
 - les nettoyer et structurer,
@@ -10,7 +10,7 @@ L’objectif est de démontrer des **bonnes pratiques de Data Engineering** appl
 
 ---
 
-## 🏗️ Architecture du projet
+## Architecture du projet
 
 ```text
 data-engineering/
