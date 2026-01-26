@@ -28,6 +28,7 @@ stock-etl-pipeline/
 │
 ├── airflow/
 │   └── dags/
+│       ├── stock_etl_main.py           # DAG calling the src : transform, load
 │       └── stock_etl_simple.py         # Simplified DAG for development
 │
 ├── src/
