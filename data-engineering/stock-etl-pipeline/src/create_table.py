@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS stocks(
     low NUMERIC,
     close NUMERIC,
     volume BIGINT,
-    dividents NUMERIC,
+    dividends NUMERIC,
     stock_splits NUMERIC,
     extracted_at TIMESTAMP NOT NULL,
     PRIMARY KEY (symbol, date)

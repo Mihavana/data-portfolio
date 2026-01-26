@@ -2,9 +2,9 @@ import psycopg2
 
 def get_connection():
     return psycopg2.connect(
-        dbname="stocks_db",
-        user="mihavana",
-        password="password123",
+        dbname="portfolio_db",
+        user="user",
+        password="password",
         host="localhost",
         port="5432"
     )

@@ -3,7 +3,7 @@ import pandas as pd
 def transform(df : pd.DataFrame) -> pd.DataFrame:
     df.columns = df.columns.str.strip()
 
-    df["Date"] = pd.to_datetime(df["Date"])
+    df["Date"] = pd.to_datetime(df["Date"], utc=True, errors='coerce').dt.tz_localize(None)
 
     numeric_cols = [
         "Open", "High", "Low", "Close",
