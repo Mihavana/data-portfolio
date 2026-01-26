@@ -1,4 +1,4 @@
-# Stock ETL Pipeline
+<h1 align="center">Stock ETL Pipeline</h1>
 
 ## Objectif du projet
 Ce projet illustre la mise en place d’un **pipeline ETL (Extract, Transform, Load)** permettant de :
