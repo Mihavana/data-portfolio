@@ -1,4 +1,4 @@
-# Stock ETL Pipeline (Data Engineering Project)
+# Stock ETL Pipeline
 
 ## Objectif du projet
 Ce projet illustre la mise en place d’un **pipeline ETL (Extract, Transform, Load)** permettant de :
