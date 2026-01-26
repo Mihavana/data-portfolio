@@ -1,6 +1,6 @@
 # src/load.py
 from psycopg2.extras import execute_values
-from db import get_connection
+from src.db import get_connection
 
 def load(df):
     conn = get_connection()

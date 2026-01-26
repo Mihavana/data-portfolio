@@ -1,0 +1,124 @@
+[2026-01-26T14:35:53.723+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=stock_etl_simple/run_id=manual__2026-01-26T14:35:50.247673+00:00/task_id=process_stock_data permission to 509
+[2026-01-26T14:35:53.830+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=stock_etl_simple/run_id=manual__2026-01-26T14:35:50.247673+00:00/task_id=process_stock_data permission to 509
+[2026-01-26T14:35:53.933+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: stock_etl_simple.process_stock_data manual__2026-01-26T14:35:50.247673+00:00 [queued]>
+[2026-01-26T14:35:54.124+0000] {taskinstance.py:1157} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: stock_etl_simple.process_stock_data manual__2026-01-26T14:35:50.247673+00:00 [queued]>
+[2026-01-26T14:35:54.127+0000] {taskinstance.py:1359} INFO - Starting attempt 1 of 2
+[2026-01-26T14:35:54.158+0000] {taskinstance.py:1380} INFO - Executing <Task(PythonOperator): process_stock_data> on 2026-01-26 14:35:50.247673+00:00
+[2026-01-26T14:35:54.172+0000] {standard_task_runner.py:57} INFO - Started process 203 to run task
+[2026-01-26T14:35:54.179+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'stock_etl_simple', 'process_stock_data', 'manual__2026-01-26T14:35:50.247673+00:00', '--job-id', '17', '--raw', '--subdir', 'DAGS_FOLDER/stock_etl_simple.py', '--cfg-path', '/tmp/tmp9m86vk88']
+[2026-01-26T14:35:54.183+0000] {standard_task_runner.py:85} INFO - Job 17: Subtask process_stock_data
+[2026-01-26T14:35:54.216+0000] {logging_mixin.py:151} WARNING - /home/***/.local/lib/python3.8/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2026-01-26T14:35:54.275+0000] {logging_mixin.py:151} INFO - Changing /opt/***/logs/dag_id=stock_etl_simple/run_id=manual__2026-01-26T14:35:50.247673+00:00/task_id=process_stock_data permission to 509
+[2026-01-26T14:35:54.279+0000] {task_command.py:415} INFO - Running <TaskInstance: stock_etl_simple.process_stock_data manual__2026-01-26T14:35:50.247673+00:00 [running]> on host c9b9fa5d2d7f
+[2026-01-26T14:35:54.424+0000] {taskinstance.py:1660} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='stock_etl_simple' AIRFLOW_CTX_TASK_ID='process_stock_data' AIRFLOW_CTX_EXECUTION_DATE='2026-01-26T14:35:50.247673+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-26T14:35:50.247673+00:00'
+[2026-01-26T14:35:54.426+0000] {logging_mixin.py:151} INFO - 🚀 Début du traitement des stocks
+[2026-01-26T14:35:54.427+0000] {logging_mixin.py:151} INFO - 📂 Fichiers trouvés: 3
+[2026-01-26T14:35:54.427+0000] {logging_mixin.py:151} INFO -    - AAPL_2026-01-26 06:13:30.297050+00:00.csv
+[2026-01-26T14:35:54.428+0000] {logging_mixin.py:151} INFO -    - GOOGL_2026-01-26 06:13:31.897613+00:00.csv
+[2026-01-26T14:35:54.428+0000] {logging_mixin.py:151} INFO -    - MSFT_2026-01-26 06:13:31.074172+00:00.csv
+[2026-01-26T14:35:54.428+0000] {logging_mixin.py:151} INFO - 
+================================================================================
+[2026-01-26T14:35:54.428+0000] {logging_mixin.py:151} INFO - 📄 Traitement de : AAPL_2026-01-26 06:13:30.297050+00:00.csv
+[2026-01-26T14:35:54.429+0000] {logging_mixin.py:151} INFO - ================================================================================
+[2026-01-26T14:35:54.429+0000] {logging_mixin.py:151} INFO -   1️⃣ Lecture du CSV...
+[2026-01-26T14:35:54.441+0000] {logging_mixin.py:151} INFO -      ✅ Lu 1018 lignes
+[2026-01-26T14:35:54.441+0000] {logging_mixin.py:151} INFO -      Colonnes: ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Dividends', 'Stock Splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.441+0000] {logging_mixin.py:151} INFO -   2️⃣ Nettoyage des colonnes...
+[2026-01-26T14:35:54.443+0000] {logging_mixin.py:151} INFO -      ✅ Colonnes nettoyées: ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock_splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.444+0000] {logging_mixin.py:151} INFO -   3️⃣ Conversion des dates...
+[2026-01-26T14:35:54.462+0000] {logging_mixin.py:151} INFO -      ✅ Dates converties
+[2026-01-26T14:35:54.462+0000] {logging_mixin.py:151} INFO -   4️⃣ Nettoyage des données...
+[2026-01-26T14:35:54.468+0000] {logging_mixin.py:151} INFO -      ✅ 1018 → 1018 lignes (après nettoyage)
+[2026-01-26T14:35:54.468+0000] {logging_mixin.py:151} INFO -   5️⃣ Connexion à la base de données...
+[2026-01-26T14:35:54.469+0000] {logging_mixin.py:151} INFO -      ❌ ERREUR: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.471+0000] {logging_mixin.py:151} INFO -      Traceback (most recent call last):
+  File "/opt/***/dags/stock_etl_simple.py", line 72, in process_stocks
+    conn = psycopg2.connect(**db_config)
+  File "/home/***/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.471+0000] {logging_mixin.py:151} INFO - 
+================================================================================
+[2026-01-26T14:35:54.472+0000] {logging_mixin.py:151} INFO - 📄 Traitement de : GOOGL_2026-01-26 06:13:31.897613+00:00.csv
+[2026-01-26T14:35:54.472+0000] {logging_mixin.py:151} INFO - ================================================================================
+[2026-01-26T14:35:54.472+0000] {logging_mixin.py:151} INFO -   1️⃣ Lecture du CSV...
+[2026-01-26T14:35:54.478+0000] {logging_mixin.py:151} INFO -      ✅ Lu 1018 lignes
+[2026-01-26T14:35:54.478+0000] {logging_mixin.py:151} INFO -      Colonnes: ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Dividends', 'Stock Splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.479+0000] {logging_mixin.py:151} INFO -   2️⃣ Nettoyage des colonnes...
+[2026-01-26T14:35:54.479+0000] {logging_mixin.py:151} INFO -      ✅ Colonnes nettoyées: ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock_splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.480+0000] {logging_mixin.py:151} INFO -   3️⃣ Conversion des dates...
+[2026-01-26T14:35:54.490+0000] {logging_mixin.py:151} INFO -      ✅ Dates converties
+[2026-01-26T14:35:54.491+0000] {logging_mixin.py:151} INFO -   4️⃣ Nettoyage des données...
+[2026-01-26T14:35:54.496+0000] {logging_mixin.py:151} INFO -      ✅ 1018 → 1018 lignes (après nettoyage)
+[2026-01-26T14:35:54.496+0000] {logging_mixin.py:151} INFO -   5️⃣ Connexion à la base de données...
+[2026-01-26T14:35:54.497+0000] {logging_mixin.py:151} INFO -      ❌ ERREUR: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.497+0000] {logging_mixin.py:151} INFO -      Traceback (most recent call last):
+  File "/opt/***/dags/stock_etl_simple.py", line 72, in process_stocks
+    conn = psycopg2.connect(**db_config)
+  File "/home/***/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.497+0000] {logging_mixin.py:151} INFO - 
+================================================================================
+[2026-01-26T14:35:54.498+0000] {logging_mixin.py:151} INFO - 📄 Traitement de : MSFT_2026-01-26 06:13:31.074172+00:00.csv
+[2026-01-26T14:35:54.498+0000] {logging_mixin.py:151} INFO - ================================================================================
+[2026-01-26T14:35:54.498+0000] {logging_mixin.py:151} INFO -   1️⃣ Lecture du CSV...
+[2026-01-26T14:35:54.503+0000] {logging_mixin.py:151} INFO -      ✅ Lu 1018 lignes
+[2026-01-26T14:35:54.503+0000] {logging_mixin.py:151} INFO -      Colonnes: ['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Dividends', 'Stock Splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.503+0000] {logging_mixin.py:151} INFO -   2️⃣ Nettoyage des colonnes...
+[2026-01-26T14:35:54.504+0000] {logging_mixin.py:151} INFO -      ✅ Colonnes nettoyées: ['date', 'open', 'high', 'low', 'close', 'volume', 'dividends', 'stock_splits', 'symbol', 'extracted_at']
+[2026-01-26T14:35:54.504+0000] {logging_mixin.py:151} INFO -   3️⃣ Conversion des dates...
+[2026-01-26T14:35:54.513+0000] {logging_mixin.py:151} INFO -      ✅ Dates converties
+[2026-01-26T14:35:54.513+0000] {logging_mixin.py:151} INFO -   4️⃣ Nettoyage des données...
+[2026-01-26T14:35:54.517+0000] {logging_mixin.py:151} INFO -      ✅ 1018 → 1018 lignes (après nettoyage)
+[2026-01-26T14:35:54.517+0000] {logging_mixin.py:151} INFO -   5️⃣ Connexion à la base de données...
+[2026-01-26T14:35:54.518+0000] {logging_mixin.py:151} INFO -      ❌ ERREUR: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.518+0000] {logging_mixin.py:151} INFO -      Traceback (most recent call last):
+  File "/opt/***/dags/stock_etl_simple.py", line 72, in process_stocks
+    conn = psycopg2.connect(**db_config)
+  File "/home/***/.local/lib/python3.8/site-packages/psycopg2/__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+psycopg2.OperationalError: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.519+0000] {logging_mixin.py:151} INFO - 
+================================================================================
+[2026-01-26T14:35:54.519+0000] {logging_mixin.py:151} INFO - 📊 RÉSUMÉ FINAL
+[2026-01-26T14:35:54.519+0000] {logging_mixin.py:151} INFO - ================================================================================
+[2026-01-26T14:35:54.519+0000] {logging_mixin.py:151} INFO - ✅ Succès: 0
+[2026-01-26T14:35:54.520+0000] {logging_mixin.py:151} INFO - ❌ Échecs: 3
+[2026-01-26T14:35:54.520+0000] {logging_mixin.py:151} INFO - 
+🔍 Erreurs détaillées:
+[2026-01-26T14:35:54.520+0000] {logging_mixin.py:151} INFO -    - AAPL_2026-01-26 06:13:30.297050+00:00.csv: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.520+0000] {logging_mixin.py:151} INFO -    - GOOGL_2026-01-26 06:13:31.897613+00:00.csv: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.520+0000] {logging_mixin.py:151} INFO -    - MSFT_2026-01-26 06:13:31.074172+00:00.csv: connection to server at "localhost" (::1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+[2026-01-26T14:35:54.521+0000] {logging_mixin.py:151} INFO - ================================================================================
+[2026-01-26T14:35:54.521+0000] {python.py:194} INFO - Done. Returned value was: Done: 0 succeeded, 3 failed
+[2026-01-26T14:35:54.547+0000] {taskinstance.py:1398} INFO - Marking task as SUCCESS. dag_id=stock_etl_simple, task_id=process_stock_data, execution_date=20260126T143550, start_date=20260126T143553, end_date=20260126T143554
+[2026-01-26T14:35:54.597+0000] {local_task_job_runner.py:228} INFO - Task exited with return code 0
+[2026-01-26T14:35:54.616+0000] {taskinstance.py:2776} INFO - 0 downstream tasks scheduled from follow-on schedule check
