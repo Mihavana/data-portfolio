@@ -1,30 +1,30 @@
 <h1 align="center">Stock ETL Pipeline</h1>
 
-## Objectif du projet
-Ce projet illustre la mise en place d’un **pipeline ETL (Extract, Transform, Load)** permettant de :
-- collecter des données financières (actions boursières),
-- les nettoyer et structurer,
-- puis les charger dans une base de données **PostgreSQL**.
+## Project Objective
+This project demonstrates the implementation of an **ETL pipeline (Extract, Transform, Load)** to:
+- collect financial stock data,
+- clean and structure it,
+- then load it into a **PostgreSQL** database.
 
-L’objectif est de démontrer des **bonnes pratiques de Data Engineering** applicables en environnement professionnel : modularité, idempotence, gestion des erreurs et clarté du code.
+The goal is to showcase **Data Engineering best practices** applicable in a professional environment: modularity, idempotence, error handling, and code clarity.
 
 ---
 
-## Architecture du projet
+## Project Structure
 
 ```text
 data-engineering/
 └── stock-etl-pipeline/
     ├── src/
-    │   ├── create_table.py     # Création de la base de données
-    │   ├── db.py               # Configuration et liaison avec la base de données
-    │   ├── extract.py          # Extraction des données (API / fichiers)
-    │   ├── transform.py        # Nettoyage et transformation des données
-    │   ├── load.py             # Chargement dans PostgreSQL
-    │   └── main.py             # Le fichier principal pour faire marcher tous les codes
+    │   ├── create_table.py     # Database table creation
+    │   ├── db.py               # Database connection setup
+    │   ├── extract.py          # Data extraction (API / CSV files)
+    │   ├── transform.py        # Data cleaning and transformation
+    │   ├── load.py             # Data loading into PostgreSQL
+    │   └── main.py             # Main script to run the full pipeline
     │
     ├── data/
-    │   └── raw/            # Données brutes (CSV)
+    │   └── raw/                # Raw CSV data
     │
-    ├── requirements.txt   # Dépendances Python
+    ├── requirements.txt        # Python dependencies
     └── README.md
