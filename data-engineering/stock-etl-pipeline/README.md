@@ -26,6 +26,7 @@ data-engineering/
     │   ├── db.py               # Database connection setup
     │   ├── extract.py          # Data extraction (API / CSV files)
     │   ├── transform.py        # Data cleaning and transformation
+    │   ├── validate.py         # Data quality checks
     │   ├── load.py             # Data loading into PostgreSQL
     │   └── main.py             # Main script to run the full pipeline
     │

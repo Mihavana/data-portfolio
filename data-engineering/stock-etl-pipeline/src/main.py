@@ -3,6 +3,7 @@ import pandas as pd
 from pathlib import Path
 from transform import transform
 from load import load
+from validate import validate
 
 RAW_DATA_DIR = Path(
     "/mnt/44D2A11AD2A1116A/Portfolio/data-portfolio/data-engineering/stock-etl-pipeline/data/raw"
@@ -21,10 +22,17 @@ for file_path in csv_files:
         df = pd.read_csv(
             file_path,
             sep=",",
+            header=0,
             encoding="utf-8"
         )
 
+        # Transformation des données
         df = transform(df)
+
+        # Validation des données transformées
+        validate(df)
+
+        # Chargement des données validées
         load(df)
 
         print(f"✅ {file_path.name} chargé avec succès\n")
