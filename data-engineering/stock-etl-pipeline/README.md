@@ -33,6 +33,8 @@ data-engineering/
     ├── data/
     │   └── raw/                # Raw CSV data
     │
+    ├── logs/                   # Logs of pipeline execution
+    │
     ├── requirements.txt        # Python dependencies
     └── README.md
 ```

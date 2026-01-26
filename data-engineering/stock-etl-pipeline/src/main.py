@@ -10,6 +10,9 @@ RAW_DATA_DIR = Path(
     "/mnt/44D2A11AD2A1116A/Portfolio/data-portfolio/data-engineering/stock-etl-pipeline/data/raw"
 )
 
+# Create logs directory if it doesn't exist
+Path("logs").mkdir(exist_ok=True)
+
 # Configure logging
 logging.basicConfig(
     filename='logs/pipeline.log',
