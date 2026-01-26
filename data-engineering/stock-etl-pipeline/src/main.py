@@ -4,18 +4,28 @@ from pathlib import Path
 from transform import transform
 from load import load
 from validate import validate
+import logging
 
 RAW_DATA_DIR = Path(
     "/mnt/44D2A11AD2A1116A/Portfolio/data-portfolio/data-engineering/stock-etl-pipeline/data/raw"
 )
 
+# Configure logging
+logging.basicConfig(
+    filename='logs/pipeline.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
 csv_files = list(RAW_DATA_DIR.glob("*.csv"))
 
 if not csv_files:
+    logging.warning("Aucun fichier CSV trouvé.")
     print("Aucun fichier CSV trouvé.")
     exit()
 
 for file_path in csv_files:
+    logging.info(f"Processing file: {file_path.name}")
     print(f"Traitement du fichier : {file_path.name}")
 
     try:
@@ -35,7 +45,9 @@ for file_path in csv_files:
         # Chargement des données validées
         load(df)
 
-        print(f"✅ {file_path.name} chargé avec succès\n")
+        logging.info(f"{file_path.name} loaded successfully")
+        print(f"✅ {file_path.name} loaded successfully\n")
 
     except Exception as e:
-        print(f"❌ Erreur sur {file_path.name} : {e}\n")
+        logging.error(f"Error on {file_path.name}: {e}")
+        print(f"❌ Error on {file_path.name} : {e}\n")
