@@ -151,7 +151,7 @@ docker exec airflow-scheduler airflow users create \
     --password admin
 
 # Restart webserver to apply changes
-docker-compose -f docker-compose-airflow.yml restart airflow-webserver
+docker-compose restart airflow-webserver
 ```
 
 ### 4. Access Airflow Web UI
