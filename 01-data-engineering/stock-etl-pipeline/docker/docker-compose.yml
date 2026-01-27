@@ -14,6 +14,9 @@ services:
     networks:
       - stock-network
     restart: unless-stopped
+ 
+ 
+ # Airflow DB
   airflow-db:
     image: postgres:13
     container_name: airflow-postgres
@@ -28,6 +31,7 @@ services:
     networks:
       - stock-network
     restart: unless-stopped
+
 
   # Airflow Webserver
   airflow-webserver:
@@ -75,6 +79,7 @@ services:
       interval: 30s
       timeout: 10s
       retries: 5
+
 
   # Airflow Scheduler
   airflow-scheduler:
