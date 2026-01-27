@@ -3,10 +3,8 @@ from datetime import datetime
 from pathlib import Path
 import pandas as pd
 
-from src.validate import validate
-
-RAW_DATA_DIR = Path("opt/airflow/data/raw")
-PROCESSED_DIR = Path("opt/airflow/data/processed")
+RAW_DATA_DIR = Path("/opt/airflow/data/raw")
+PROCESSED_DIR = Path("/opt/airflow/data/processed")
 
 @dag(
     dag_id = "stock_etl_taskflow",
@@ -20,14 +18,16 @@ def stock_etl_taskflow():
     @task
     def extract_files():
         from src.extract import extract_stock_data
+        import logging
 
-        symbols = ["APPL", "MSFT", "GOOGL"]
+        symbols = ["AAPL", "MSFT", "GOOGL"]
         paths = []
 
         for symbol in symbols:
             path = extract_stock_data(symbol)
             paths.append(str(path))
         
+        logging.info(f"✅ il y a {len(paths)} fichiers CSV extraits")
         return paths
     
     @task
@@ -38,7 +38,7 @@ def stock_etl_taskflow():
         processed_files = []
 
         for file_path in file_paths:
-            df = pd.read_csv(file_path)
+            df = pd.read_csv(file_path, sep=",", header=0, encoding="utf-8")
             df = transform(df)
 
             output_path = PROCESSED_DIR / Path(file_path).name
@@ -48,6 +48,17 @@ def stock_etl_taskflow():
             print(f"Transformed: {output_path.name}")
         
         return processed_files
+    
+    @task
+    def validate_data(processed_files: list[str]):
+        from src.validate import validate
+
+        for file_path in processed_files:
+            df = pd.read_csv(file_path, parse_dates=['date'])
+            validate(df)
+            print(f"Validated: {Path(file_path).name}")
+        return processed_files
+
     
     @task
     def load_data(validated_files: list[str]):
@@ -60,5 +71,7 @@ def stock_etl_taskflow():
     
     files = extract_files()
     transformed = transform_data(files)
-    validated = validate(transformed)
+    validated = validate_data(transformed)
     load_data(validated)
+
+stock_etl_taskflow()

@@ -1,0 +1,31 @@
+etl:
+    build:
+      context: ..  # ← Important : pointe vers la racine du projet
+      dockerfile: docker/Dockerfile.local  # ← Chemin depuis la racine
+    container_name: stock-etl
+    depends_on:
+      - db
+    volumes:
+      - ../data:/app/data    # Monte le dossier data
+      - ../logs:/app/logs    # Monte le dossier logs
+      - ../src:/app/src      # Monte le code source (hot reload)
+    environment:
+      - DB_HOST=portfolio_postgres_db
+      - DB_USER=user
+      - DB_PASSWORD=password
+      - DB_NAME=portfolio_db
+      - DB_PORT=5432
+    networks:
+      - stock-network
+    # Garde le conteneur actif sans exécuter, Airflow s'en chargera
+    command: tail -f /dev/null
+    restart: unless-stopped
+
+volumes:
+  db_data:
+
+networks:
+  stock-network:
+    external: true
+    name: stock-shared-network
+    driver: bridge
