@@ -125,7 +125,7 @@ This design allows the pipeline to be safely rerun multiple times, making it res
 
 ```bash
 git clone https://github.com/Mihavana/data-portfolio.git
-cd stock-etl-pipeline
+cd data-portfolio/01-data-engineering/stock-etl-pipeline
 ```
 
 ### 2. Build and start Airflow and PostgreSQL Database
