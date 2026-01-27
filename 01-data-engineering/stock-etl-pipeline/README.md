@@ -43,7 +43,6 @@ stock-etl-pipeline/
 ├── data/
 │   └── raw/                            # Raw CSV data storage
 │
-├── logs/                               # Pipeline execution logs
 │
 ├── requirements.txt                    # Python dependencies
 └── README.md
