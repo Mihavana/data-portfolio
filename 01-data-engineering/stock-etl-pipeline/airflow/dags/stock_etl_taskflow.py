@@ -15,6 +15,36 @@ PROCESSED_DIR = Path("/opt/airflow/data/processed")
 )
 def stock_etl_taskflow():
 
+    # 🔹 Creation of table on PostgreSQL if not exists
+    @task
+    def init_db():
+        from src.db import get_connection
+
+        sql = """
+        CREATE TABLE IF NOT EXISTS stocks(
+            symbol VARCHAR(10) NOT NULL,
+            date DATE NOT NULL,
+            open NUMERIC,
+            high NUMERIC,
+            low NUMERIC,
+            close NUMERIC,
+            volume BIGINT,
+            dividends NUMERIC,
+            stock_splits NUMERIC,
+            extracted_at TIMESTAMP NOT NULL,
+            PRIMARY KEY (symbol, date)
+        );
+        """
+
+        conn = get_connection()
+        cur = conn.cursor()
+        cur.execute(sql)
+        conn.commit()
+        cur.close()
+        conn.close()
+
+        print("✅ Table stocks prête")
+
     @task
     def extract_files():
         from src.extract import extract_stock_data
@@ -69,9 +99,12 @@ def stock_etl_taskflow():
             load(df)
             print(f"Loaded: {Path(file_path).name}")
     
+    init = init_db()
     files = extract_files()
     transformed = transform_data(files)
     validated = validate_data(transformed)
     load_data(validated)
+
+    init >> files
 
 stock_etl_taskflow()
