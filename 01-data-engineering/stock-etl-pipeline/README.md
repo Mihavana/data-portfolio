@@ -238,7 +238,7 @@ cat logs/pipeline_2024-01-26.log
 
 ### Stock Symbols
 
-Edit `src/extract.py` to add/remove stock symbols:
+Edit `Airflow/stock_etl_taskflow.py` on **@task**  `extract_files()` to add/remove stock symbols:
 
 ```python
 STOCK_SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA']
@@ -250,7 +250,7 @@ Edit `airflow/dags/stock_etl_taskflow.py`:
 
 ```python
 @dag(
-    dag_id='stock_etl_simple',
+    dag_id='stock_etl_taskflow',
     start_date=datetime(2026, 1, 26),
     schedule_interval='0 0 * * *',  # Run daily at midnight
     catchup=False,
@@ -291,5 +291,12 @@ docker logs airflow-webserver
 ```bash
 docker exec portfolio_postgres_db psql -U user -d portfolio_db -c "SELECT version();"
 ```
+Expected output:
+   ```
+                                                        version                                                        
+  ----------------------------------------------------------------------------------------------------------------------
+  PostgreSQL 13.23 (Debian 13.23-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+  (1 row)
+   ```
 
 ---
