@@ -15,7 +15,7 @@ services:
       - stock-network
     restart: unless-stopped
  
- 
+
  # Airflow DB
   airflow-db:
     image: postgres:13
@@ -90,9 +90,9 @@ services:
     deploy:                           
       resources:
         limits:
-          memory: 4G
-        reservations:
           memory: 2G
+        reservations:
+          memory: 1G
     environment:
       # Configuration Airflow
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
