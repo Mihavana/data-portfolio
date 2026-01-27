@@ -220,7 +220,7 @@ docker logs airflow-scheduler
 docker logs airflow-webserver
 
 # PostgreSQL logs
-docker logs postgres
+docker logs portfolio_postgres_db
 ```
 
 ### Application Logs
@@ -261,15 +261,16 @@ STOCK_SYMBOLS = ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA']
 
 ### Schedule Interval
 
-Edit `airflow/dags/stock_etl_simple.py`:
+Edit `airflow/dags/stock_etl_taskflow.py`:
 
 ```python
-with DAG(
+@dag(
     dag_id='stock_etl_simple',
     start_date=datetime(2026, 1, 26),
     schedule_interval='0 0 * * *',  # Run daily at midnight
     catchup=False,
-) as dag:
+    tags = ["stocks", "test"],
+)
 ```
 
 Schedule formats:
@@ -290,42 +291,10 @@ Schedule formats:
 docker ps
 
 # Restart webserver
-docker-compose -f docker-compose-airflow.yml restart airflow-webserver
+docker-compose restart airflow-webserver
 
 # Check logs for errors
 docker logs airflow-webserver
-```
-
-### Issue: "Connection refused" to database
-
-**Solution:**
-- Ensure you're using `'host': 'postgres'` (not `'localhost'`)
-- Verify containers are on the same network:
-  ```bash
-  docker network ls
-  docker inspect airflow-scheduler | grep NetworkMode
-  ```
-
-### Issue: "Table does not exist"
-
-**Solution:**
-```bash
-# Recreate the table
-python src/create_table.py
-
-# Verify it exists
-docker exec postgres psql -U user -d portfolio_db -c "\d stocks"
-```
-
-### Issue: DAG not appearing in Airflow
-
-**Solution:**
-```bash
-# Copy DAG to Airflow
-docker cp airflow/dags/stock_etl_simple.py airflow-scheduler:/opt/airflow/dags/
-
-# Restart scheduler
-docker-compose -f docker-compose-airflow.yml restart airflow-scheduler
 ```
 
 ---
@@ -335,26 +304,7 @@ docker-compose -f docker-compose-airflow.yml restart airflow-scheduler
 ### Test Database Connection
 
 ```bash
-docker exec postgres psql -U user -d portfolio_db -c "SELECT version();"
-```
-
-### Test Data Extraction
-
-```bash
-python src/extract.py
-ls -lh data/raw/
-```
-
-### Test Full Pipeline (Standalone)
-
-```bash
-python src/main.py
-```
-
-Expected output:
-```
-Pipeline completed: 3 succeeded, 0 failed
-Total rows loaded: 3054
+docker exec portfolio_postgres_db psql -U user -d portfolio_db -c "SELECT version();"
 ```
 
 ---
