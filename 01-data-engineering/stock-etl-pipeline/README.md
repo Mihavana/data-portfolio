@@ -36,9 +36,11 @@ stock-etl-pipeline/
 │   ├── validate.py                     # Data quality checks
 │   └── load.py                         # Data loading into PostgreSQL
 │
-├── data/
-│   └── raw/                            # Raw CSV data storage
+├── data/                               # Folder will be created automatically
+│   ├── raw/                            # Raw CSV data storage
+│   └── processed/                      # Clean CSV data storage
 │
+├── logs/                               # Folder will be created automatically
 │
 ├── requirements.txt                    # Python dependencies
 └── README.md
