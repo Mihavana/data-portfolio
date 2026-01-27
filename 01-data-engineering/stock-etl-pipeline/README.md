@@ -235,21 +235,6 @@ cat logs/pipeline_2024-01-26.log
 
 ---
 
-## 🔧 Configuration
-
-### Database Connection
-
-Edit `src/db.py` to modify database settings:
-
-```python
-db_config = {
-    'host': 'portfolio_postgres_db',           # Container name in Docker network
-    'port': 5432,
-    'database': 'portfolio_db',
-    'user': 'user',
-    'password': 'password'
-}
-```
 
 ### Stock Symbols
 
