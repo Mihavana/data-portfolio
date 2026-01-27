@@ -186,8 +186,8 @@ http://localhost:8080
 6. **View results:**
    ```bash
    # Check loaded data
-   docker exec portfolio_postgres_db psql -U user -d portfolio_db -c \
-  "SELECT symbol, COUNT(*) FROM stocks GROUP BY symbol;"
+    docker exec portfolio_postgres_db psql -U user -d portfolio_db -c \
+    "SELECT symbol, COUNT(*) FROM stocks GROUP BY symbol;"
    ```
 
    Expected output:
