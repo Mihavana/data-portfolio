@@ -20,8 +20,6 @@ data-portfolio/
 - **PostgreSQL**: data storage and management
 - **Airflow**: ETL pipeline orchestration and scheduling
 - **Docker / Docker Compose**: pipeline and service containerization
-- **Flask / FastAPI**: for ML API deployment (planned in 04-ml-api-deployment)
-- **Power BI / Plotly**: visualization and dashboards (planned in 02-data-analysis-dashboard)
 
 ## 🚀 Completed Projects
 
