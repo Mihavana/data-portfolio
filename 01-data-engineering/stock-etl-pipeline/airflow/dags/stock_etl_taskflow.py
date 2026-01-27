@@ -2,6 +2,7 @@ from airflow.decorators import dag, task
 from datetime import datetime
 from pathlib import Path
 import pandas as pd
+import logging
 
 RAW_DATA_DIR = Path("/opt/airflow/data/raw")
 PROCESSED_DIR = Path("/opt/airflow/data/processed")
@@ -48,7 +49,6 @@ def stock_etl_taskflow():
     @task
     def extract_files():
         from src.extract import extract_stock_data
-        import logging
 
         symbols = ["AAPL", "MSFT", "GOOGL"]
         paths = []
@@ -57,7 +57,7 @@ def stock_etl_taskflow():
             path = extract_stock_data(symbol)
             paths.append(str(path))
         
-        logging.info(f"✅ il y a {len(paths)} fichiers CSV extraits")
+        logging.info(f"✅ {len(paths)} CSV files extract")
         return paths
     
     @task
@@ -77,6 +77,7 @@ def stock_etl_taskflow():
 
             print(f"Transformed: {output_path.name}")
         
+        logging.info(f"✅ Transformation complete")
         return processed_files
     
     @task
@@ -87,6 +88,8 @@ def stock_etl_taskflow():
             df = pd.read_csv(file_path, parse_dates=['date'])
             validate(df)
             print(f"Validated: {Path(file_path).name}")
+        
+        logging.info(f"✅ Everything is good")
         return processed_files
 
     
@@ -98,6 +101,8 @@ def stock_etl_taskflow():
             df = pd.read_csv(file_path)
             load(df)
             print(f"Loaded: {Path(file_path).name}")
+
+            logging.info(f"✅ Data loaded")
     
     init = init_db()
     files = extract_files()

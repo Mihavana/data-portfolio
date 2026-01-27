@@ -22,8 +22,7 @@ The goal is to showcase **Data Engineering best practices** applicable in a prof
 ```text
 stock-etl-pipeline/
 ├── docker/
-│   ├── docker-compose.yml              # Main PostgreSQL database
-│   ├── docker-compose-airflow.yml      # Airflow services (webserver, scheduler)
+│   ├── docker-compose.yml              # PostgreSQL database and Airflow services (webserver, scheduler)
 │   └── Dockerfile.airflow              # Custom Airflow image with dependencies
 │
 ├── airflow/
@@ -31,13 +30,11 @@ stock-etl-pipeline/
 │       └── stock_etl_taskflow.py          # DAG using taskflow
 │
 ├── src/
-│   ├── create_table.py                 # Database table creation
 │   ├── db.py                           # Database connection setup
 │   ├── extract.py                      # Data extraction (Yahoo Finance API)
 │   ├── transform.py                    # Data cleaning and transformation
 │   ├── validate.py                     # Data quality checks
-│   ├── load.py                         # Data loading into PostgreSQL
-│   └── main.py                         # Main script (can be run standalone)
+│   └── load.py                         # Data loading into PostgreSQL
 │
 ├── data/
 │   └── raw/                            # Raw CSV data storage
