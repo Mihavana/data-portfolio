@@ -126,65 +126,14 @@ git clone https://github.com/Mihavana/data-portfolio.git
 cd stock-etl-pipeline
 ```
 
-### 2. Start PostgreSQL Database
+### 2. Build and start Airflow and PostgreSQL Database
 
 ```bash
 cd docker
-docker-compose up -d
+docker-compose up --build -d
 ```
 
-This starts the PostgreSQL container on port **5432**.
-
-**Verify it's running:**
-```bash
-docker ps | grep postgres
-```
-
-### 3. Create the Database Table
-
-```bash
-# From the project root
-python src/create_table.py
-```
-
-This creates the `stocks` table with the following schema:
-
-```sql
-CREATE TABLE IF NOT EXISTS stocks (
-    symbol VARCHAR(10) NOT NULL,
-    date DATE NOT NULL,
-    open NUMERIC,
-    high NUMERIC,
-    low NUMERIC,
-    close NUMERIC,
-    volume BIGINT,
-    dividends NUMERIC,
-    stock_splits NUMERIC,
-    extracted_at TIMESTAMP NOT NULL,
-    PRIMARY KEY (symbol, date)
-);
-```
-
-### 4. Build and Start Airflow
-
-```bash
-cd docker
-
-# Build custom Airflow image with dependencies
-docker-compose -f docker-compose-airflow.yml build --no-cache
-
-# Start Airflow services
-docker-compose -f docker-compose-airflow.yml up -d
-```
-
-This starts:
-- **Airflow Webserver** on port **8080**
-- **Airflow Scheduler** (background process)
-- **Airflow Metadata Database** on port **5433**
-
-**Wait ~30 seconds** for services to initialize.
-
-### 5. Initialize Airflow (First Time Only)
+### 3. Initialize Airflow (First Time Only)
 
 ```bash
 # Initialize Airflow database
@@ -203,7 +152,7 @@ docker exec airflow-scheduler airflow users create \
 docker-compose -f docker-compose-airflow.yml restart airflow-webserver
 ```
 
-### 6. Access Airflow Web UI
+### 4. Access Airflow Web UI
 
 Open your browser and navigate to:
 
@@ -219,11 +168,9 @@ http://localhost:8080
 
 ## 🎮 Using the Pipeline
 
-### Option A: Run via Airflow (Recommended)
-
 1. **Access the Airflow UI** at `http://localhost:8080`
 
-2. **Find the DAG** named `stock_etl_simple` in the list
+2. **Find the DAG** named `stock_etl_taskflow` in the list
 
 3. **Enable the DAG** by toggling the switch on the left
 
@@ -249,22 +196,6 @@ http://localhost:8080
     GOOGL  |  1018
     MSFT   |  1018
    ```
-
-### Option B: Run Standalone (Development)
-
-```bash
-# Extract data
-python src/extract.py
-
-# Transform data
-python src/transform.py
-
-# Load to database
-python src/load.py
-
-# Or run the full pipeline
-python src/main.py
-```
 
 ---
 
