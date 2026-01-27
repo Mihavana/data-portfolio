@@ -50,7 +50,7 @@ def stock_etl_taskflow():
     def extract_files():
         from src.extract import extract_stock_data
 
-        symbols = ["AAPL", "MSFT", "GOOGL"]
+        symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
         paths = []
 
         for symbol in symbols:

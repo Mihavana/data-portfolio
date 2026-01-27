@@ -23,7 +23,7 @@ def extract_stock_data(symbol: str, start: str = "2022-01-01") -> Path:
 
 
 if __name__ == "__main__":
-    symbols = ["AAPL", "MSFT", "GOOGL"]
+    symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA"]
 
     for symbol in symbols:
         path = extract_stock_data(symbol)
