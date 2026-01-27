@@ -4,7 +4,7 @@ import pandas as pd
 from datetime import datetime, timezone
 from pathlib import Path
 
-RAW_DATA_PATH = Path("data/raw")
+RAW_DATA_PATH = Path("/opt/airflow/data/raw")
 
 def extract_stock_data(symbol: str, start: str = "2022-01-01") -> Path:
     RAW_DATA_PATH.mkdir(parents=True, exist_ok=True)
